@@ -70,7 +70,7 @@ export const CURRENCY_INFO: Record<string, CurrencyDisplay> = {
     decimalPlaces: 2,
     usesGrouping: true,
   },
-  
+
   // African Currencies
   NGN: {
     code: 'NGN',
@@ -100,7 +100,7 @@ export const CURRENCY_INFO: Record<string, CurrencyDisplay> = {
     decimalPlaces: 2,
     usesGrouping: true,
   },
-  
+
   // Asian Currencies
   CNY: {
     code: 'CNY',
@@ -123,7 +123,7 @@ export const CURRENCY_INFO: Record<string, CurrencyDisplay> = {
     decimalPlaces: 2,
     usesGrouping: true,
   },
-  
+
   // Cryptocurrencies
   BTC: {
     code: 'BTC',

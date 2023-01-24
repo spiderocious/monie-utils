@@ -14,7 +14,7 @@ describe('formatCurrency', () => {
   describe('basic functionality', () => {
     it('should format USD currency correctly', () => {
       const result = formatCurrency(1234.56, 'USD');
-      
+
       expect(result.formatted).toBe('$1,234.56');
       expect(result.amount).toBe(1234.56);
       expect(result.currency).toBe('USD');
@@ -24,21 +24,21 @@ describe('formatCurrency', () => {
 
     it('should format EUR currency correctly', () => {
       const result = formatCurrency(1234.56, 'EUR');
-      
+
       expect(result.formatted).toBe('€1,234.56');
       expect(result.currency).toBe('EUR');
     });
 
     it('should format JPY currency correctly (no decimals)', () => {
       const result = formatCurrency(1234, 'JPY');
-      
+
       expect(result.formatted).toBe('¥1,234');
       expect(result.currency).toBe('JPY');
     });
 
     it('should format NGN currency correctly', () => {
       const result = formatCurrency(1234.56, 'NGN');
-      
+
       expect(result.formatted).toBe('₦1,234.56');
       expect(result.currency).toBe('NGN');
     });
@@ -58,7 +58,9 @@ describe('formatCurrency', () => {
     });
 
     it('should throw error for unsupported currencies', () => {
-      expect(() => formatCurrency(100, 'INVALID')).toThrow('Unsupported currency');
+      expect(() => formatCurrency(100, 'INVALID')).toThrow(
+        'Unsupported currency'
+      );
       expect(() => formatCurrency(100, 'XXX')).toThrow('Unsupported currency');
     });
 
@@ -214,11 +216,15 @@ describe('formatCents', () => {
   describe('input validation', () => {
     it('should throw error for invalid cent amounts', () => {
       expect(() => formatCents(NaN, 'USD')).toThrow('Invalid cents amount');
-      expect(() => formatCents(Infinity, 'USD')).toThrow('Invalid cents amount');
+      expect(() => formatCents(Infinity, 'USD')).toThrow(
+        'Invalid cents amount'
+      );
     });
 
     it('should throw error for unsupported currencies', () => {
-      expect(() => formatCents(1234, 'INVALID')).toThrow('Unsupported currency');
+      expect(() => formatCents(1234, 'INVALID')).toThrow(
+        'Unsupported currency'
+      );
     });
   });
 
