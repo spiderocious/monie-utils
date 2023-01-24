@@ -2,11 +2,11 @@
  * Tests for localization utilities
  */
 
-import { 
-  formatCurrencyByLocale, 
-  getLocaleCurrencyInfo, 
-  formatWithGrouping, 
-  formatDecimalPlaces 
+import {
+  formatCurrencyByLocale,
+  getLocaleCurrencyInfo,
+  formatWithGrouping,
+  formatDecimalPlaces,
 } from './localization';
 import { MonieUtilsError } from '../errors';
 
@@ -23,7 +23,9 @@ describe('localization utilities', () => {
     });
 
     it('should throw error for invalid amount', () => {
-      expect(() => formatCurrencyByLocale(NaN, 'USD', 'en-US')).toThrow(MonieUtilsError);
+      expect(() => formatCurrencyByLocale(NaN, 'USD', 'en-US')).toThrow(
+        MonieUtilsError
+      );
     });
   });
 

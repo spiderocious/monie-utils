@@ -2,17 +2,22 @@
  * Validation and parsing utilities
  */
 
-import type { ParsedAmount, ParsedCurrency, NormalizeOptions, RangeOptions } from './types';
+import type {
+  ParsedAmount,
+  ParsedCurrency,
+  NormalizeOptions,
+  RangeOptions,
+} from './types';
 import { CURRENCY_INFO } from '../formatCurrency/constants';
 import { MonieUtilsError } from '../errors';
 import type { Money } from '../types';
 
 /**
  * Checks if an amount is a valid money value
- * 
+ *
  * @param amount - The value to validate
  * @returns True if the amount is valid for money operations
- * 
+ *
  * @example
  * ```typescript
  * isValidAmount(123.45) // true
@@ -26,10 +31,10 @@ export function isValidAmount(amount: unknown): amount is number {
 
 /**
  * Validates if a currency code is supported (ISO 4217)
- * 
+ *
  * @param currencyCode - The currency code to validate
  * @returns True if the currency is supported
- * 
+ *
  * @example
  * ```typescript
  * isValidCurrency('USD') // true
@@ -43,29 +48,31 @@ export function isValidCurrency(currencyCode: unknown): currencyCode is string {
 
 /**
  * Validates a money object structure
- * 
+ *
  * @param moneyObject - The object to validate
  * @returns True if the object is a valid Money structure
- * 
+ *
  * @example
  * ```typescript
  * validateMoneyObject({ amount: 100, currency: 'USD' }) // true
  * validateMoneyObject({ amount: 'invalid', currency: 'USD' }) // false
  * ```
  */
-export function validateMoneyObject(moneyObject: unknown): moneyObject is Money {
+export function validateMoneyObject(
+  moneyObject: unknown
+): moneyObject is Money {
   if (!moneyObject || typeof moneyObject !== 'object') return false;
-  
+
   const obj = moneyObject as Record<string, unknown>;
   return isValidAmount(obj.amount) && isValidCurrency(obj.currency);
 }
 
 /**
  * Checks if an amount is positive
- * 
+ *
  * @param amount - The amount to check
  * @returns True if amount is positive
- * 
+ *
  * @example
  * ```typescript
  * isPositiveAmount(100) // true
@@ -80,13 +87,13 @@ export function isPositiveAmount(amount: number): boolean {
 
 /**
  * Checks if an amount is within a specified range
- * 
+ *
  * @param amount - The amount to check
  * @param min - Minimum value
  * @param max - Maximum value
  * @param options - Range validation options
  * @returns True if amount is within range
- * 
+ *
  * @example
  * ```typescript
  * isWithinRange(50, 0, 100) // true
@@ -99,10 +106,11 @@ export function isWithinRange(
   max: number,
   options: RangeOptions = {}
 ): boolean {
-  if (!isValidAmount(amount) || !isValidAmount(min) || !isValidAmount(max)) return false;
-  
+  if (!isValidAmount(amount) || !isValidAmount(min) || !isValidAmount(max))
+    return false;
+
   const { inclusive = true } = options;
-  
+
   if (inclusive) {
     return amount >= min && amount <= max;
   } else {
@@ -112,10 +120,10 @@ export function isWithinRange(
 
 /**
  * Parses a string to extract a numeric amount
- * 
+ *
  * @param amountString - The string to parse
  * @returns Parsed amount result
- * 
+ *
  * @example
  * ```typescript
  * parseAmount('123.45') // { amount: 123.45, isValid: true, originalString: '123.45' }
@@ -124,7 +132,11 @@ export function isWithinRange(
  */
 export function parseAmount(amountString: string): ParsedAmount {
   if (typeof amountString !== 'string') {
-    return { amount: NaN, isValid: false, originalString: String(amountString) };
+    return {
+      amount: NaN,
+      isValid: false,
+      originalString: String(amountString),
+    };
   }
 
   // Remove common currency symbols and formatting
@@ -135,7 +147,7 @@ export function parseAmount(amountString: string): ParsedAmount {
     .trim();
 
   const parsed = parseFloat(cleaned);
-  
+
   return {
     amount: parsed,
     isValid: isValidAmount(parsed),
@@ -145,10 +157,10 @@ export function parseAmount(amountString: string): ParsedAmount {
 
 /**
  * Extracts amount and currency from a formatted string
- * 
+ *
  * @param currencyString - The string to parse
  * @returns Parsed currency result
- * 
+ *
  * @example
  * ```typescript
  * parseCurrencyString('$123.45 USD') // { amount: 123.45, currency: 'USD', isValid: true, originalString: '$123.45 USD' }
@@ -157,7 +169,12 @@ export function parseAmount(amountString: string): ParsedAmount {
  */
 export function parseCurrencyString(currencyString: string): ParsedCurrency {
   if (typeof currencyString !== 'string') {
-    return { amount: NaN, currency: '', isValid: false, originalString: String(currencyString) };
+    return {
+      amount: NaN,
+      currency: '',
+      isValid: false,
+      originalString: String(currencyString),
+    };
   }
 
   // Try to extract currency code (3 letter code)
@@ -177,28 +194,39 @@ export function parseCurrencyString(currencyString: string): ParsedCurrency {
 
 /**
  * Normalizes an amount to a standard format
- * 
+ *
  * @param amount - The amount to normalize
  * @param options - Normalization options
  * @returns Normalized amount
- * 
+ *
  * @throws {MonieUtilsError} When amount is invalid
- * 
+ *
  * @example
  * ```typescript
  * normalizeAmount(123.456789) // 123.46 (default 2 decimal places)
  * normalizeAmount(123.456789, { decimalPlaces: 4 }) // 123.4568
  * ```
  */
-export function normalizeAmount(amount: number, options: NormalizeOptions = {}): number {
+export function normalizeAmount(
+  amount: number,
+  options: NormalizeOptions = {}
+): number {
   if (!isValidAmount(amount)) {
-    throw new MonieUtilsError(`Invalid amount: ${amount}. Amount must be a finite number.`);
+    throw new MonieUtilsError(
+      `Invalid amount: ${amount}. Amount must be a finite number.`
+    );
   }
 
   const { decimalPlaces = 2, roundingMode = 'round' } = options;
 
-  if (typeof decimalPlaces !== 'number' || decimalPlaces < 0 || !Number.isInteger(decimalPlaces)) {
-    throw new MonieUtilsError(`Invalid decimal places: ${decimalPlaces}. Must be a non-negative integer.`);
+  if (
+    typeof decimalPlaces !== 'number' ||
+    decimalPlaces < 0 ||
+    !Number.isInteger(decimalPlaces)
+  ) {
+    throw new MonieUtilsError(
+      `Invalid decimal places: ${decimalPlaces}. Must be a non-negative integer.`
+    );
   }
 
   const multiplier = Math.pow(10, decimalPlaces);
@@ -216,22 +244,27 @@ export function normalizeAmount(amount: number, options: NormalizeOptions = {}):
 
 /**
  * Parses a formatted currency string based on locale
- * 
+ *
  * @param formattedString - The formatted currency string
  * @param locale - The locale for parsing (defaults to 'en-US')
  * @returns Parsed amount
- * 
+ *
  * @throws {MonieUtilsError} When parsing fails
- * 
+ *
  * @example
  * ```typescript
  * parseFormattedCurrency('$1,234.56') // 1234.56
  * parseFormattedCurrency('1.234,56 €', 'de-DE') // 1234.56
  * ```
  */
-export function parseFormattedCurrency(formattedString: string, locale: string = 'en-US'): number {
+export function parseFormattedCurrency(
+  formattedString: string,
+  locale: string = 'en-US'
+): number {
   if (typeof formattedString !== 'string') {
-    throw new MonieUtilsError(`Invalid formatted string: ${formattedString}. Must be a string.`);
+    throw new MonieUtilsError(
+      `Invalid formatted string: ${formattedString}. Must be a string.`
+    );
   }
 
   try {
@@ -243,7 +276,11 @@ export function parseFormattedCurrency(formattedString: string, locale: string =
       .trim();
 
     // Handle different decimal separators based on locale
-    if (locale.includes('de') || locale.includes('fr') || locale.includes('es')) {
+    if (
+      locale.includes('de') ||
+      locale.includes('fr') ||
+      locale.includes('es')
+    ) {
       // European format: 1.234,56
       const parts = cleaned.split(',');
       if (parts.length === 2) {
@@ -257,13 +294,17 @@ export function parseFormattedCurrency(formattedString: string, locale: string =
     }
 
     const parsed = parseFloat(cleaned);
-    
+
     if (!isValidAmount(parsed)) {
-      throw new MonieUtilsError(`Failed to parse formatted currency: ${formattedString}`);
+      throw new MonieUtilsError(
+        `Failed to parse formatted currency: ${formattedString}`
+      );
     }
 
     return parsed;
   } catch (error) {
-    throw new MonieUtilsError(`Failed to parse formatted currency: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    throw new MonieUtilsError(
+      `Failed to parse formatted currency: ${error instanceof Error ? error.message : 'Unknown error'}`
+    );
   }
 }

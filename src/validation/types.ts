@@ -2,8 +2,6 @@
  * Type definitions for validation and parsing utilities
  */
 
-import type { Money } from '../types';
-
 /**
  * Result of parsing an amount string
  */

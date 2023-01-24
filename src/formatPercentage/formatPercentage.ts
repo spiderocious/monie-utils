@@ -8,10 +8,10 @@ import { MonieUtilsError } from '../errors';
 
 /**
  * Validates if a decimal is a valid number for percentage formatting
- * 
+ *
  * @param decimal - The decimal to validate
  * @returns True if valid, false otherwise
- * 
+ *
  * @example
  * ```typescript
  * isValidDecimal(0.25) // true
@@ -24,23 +24,23 @@ function isValidDecimal(decimal: unknown): decimal is number {
 
 /**
  * Formats a decimal as a percentage with customizable options
- * 
+ *
  * @param decimal - The decimal to format (e.g., 0.25 for 25%)
  * @param options - Formatting options
  * @returns Formatted percentage object
- * 
+ *
  * @throws {MonieUtilsError} When decimal is invalid
- * 
+ *
  * @example
  * ```typescript
  * // Basic usage
  * formatPercentage(0.25)
  * // Returns: { formatted: '25.00%', decimal: 0.25, percentage: 25, precision: 2, locale: 'en-US' }
- * 
+ *
  * // With custom precision
  * formatPercentage(0.1234, { precision: 1 })
  * // Returns: { formatted: '12.3%', decimal: 0.1234, percentage: 12.3, precision: 1, locale: 'en-US' }
- * 
+ *
  * // With custom locale
  * formatPercentage(0.1234, { locale: 'de-DE' })
  * // Returns: { formatted: '12,34 %', decimal: 0.1234, percentage: 12.34, precision: 2, locale: 'de-DE' }
@@ -52,12 +52,14 @@ export function formatPercentage(
 ): FormattedPercentage {
   // Validate input
   if (!isValidDecimal(decimal)) {
-    throw new MonieUtilsError(`Invalid decimal: ${decimal}. Decimal must be a finite number.`);
+    throw new MonieUtilsError(
+      `Invalid decimal: ${decimal}. Decimal must be a finite number.`
+    );
   }
 
   // Merge options with defaults
   const opts = { ...DEFAULT_PERCENTAGE_OPTIONS, ...options };
-  
+
   // Convert decimal to percentage
   const percentage = decimal * 100;
 
@@ -75,7 +77,7 @@ export function formatPercentage(
 
     // Add suffix
     const suffix = opts.suffix ?? '%';
-    const formatted = opts.spaceBefore 
+    const formatted = opts.spaceBefore
       ? `${formattedNumber} ${suffix}`
       : `${formattedNumber}${suffix}`;
 
@@ -87,6 +89,8 @@ export function formatPercentage(
       locale: opts.locale,
     };
   } catch (error) {
-    throw new MonieUtilsError(`Failed to format percentage: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    throw new MonieUtilsError(
+      `Failed to format percentage: ${error instanceof Error ? error.message : 'Unknown error'}`
+    );
   }
 }
