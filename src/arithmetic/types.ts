@@ -2,7 +2,6 @@
  * Type definitions for arithmetic operations utilities
  */
 
-
 /**
  * Rounding modes for financial calculations
  */

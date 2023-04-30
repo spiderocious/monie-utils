@@ -4,17 +4,17 @@
 
 import { MonieUtilsError } from '../errors';
 import {
-    addMoney,
-    calculateDiscount,
-    calculatePercentageOfTotal,
-    calculateSimpleInterest,
-    calculateTax,
-    calculateTip,
-    distributeProportionally,
-    divideMoney,
-    multiplyMoney,
-    splitAmount,
-    subtractMoney
+  addMoney,
+  calculateDiscount,
+  calculatePercentageOfTotal,
+  calculateSimpleInterest,
+  calculateTax,
+  calculateTip,
+  distributeProportionally,
+  divideMoney,
+  multiplyMoney,
+  splitAmount,
+  subtractMoney,
 } from './arithmetic';
 
 describe('arithmetic operations', () => {
