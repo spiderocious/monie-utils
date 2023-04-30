@@ -39,6 +39,9 @@ export * from './validation';
 // Export conversion utilities
 export * from './conversion';
 
+// Export arithmetic utilities
+export * from './arithmetic';
+
 // Version information
 export const VERSION = '0.1.0';
 
