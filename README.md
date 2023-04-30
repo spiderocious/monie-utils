@@ -54,34 +54,6 @@ const money = { amount: 100, currency: 'USD' };
 console.log(validateMoneyObject(money)); // true
 ```
 
-## 🏗️ Project Status
-
-This library is currently in active development. The following features are planned:
-
-### ✅ Phase 1 (Current)
-- [x] Project setup and configuration
-- [x] TypeScript interfaces and types
-- [x] Basic validation utilities
-- [x] Error handling
-- [x] Testing infrastructure
-
-### 🚧 Phase 2 (Next)
-- [ ] Currency formatting functions
-- [ ] Basic arithmetic operations
-- [ ] Money object utilities
-- [ ] Parsing utilities
-
-### 📋 Phase 3 (Planned)
-- [ ] Currency conversion utilities
-- [ ] Payment processing calculations
-- [ ] Loan and interest calculations
-- [ ] Investment utilities
-
-### 🎯 Phase 4 (Future)
-- [ ] International finance utilities
-- [ ] Business finance calculations
-- [ ] Analytics and reporting
-- [ ] Advanced formatting options
 
 ## 📚 API Reference
 
@@ -124,7 +96,7 @@ Checks if a currency is a fiat currency.
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/monie-utils.git
+git clone https://github.com/spiderocious/monie-utils.git
 cd monie-utils
 
 # Install dependencies
@@ -156,37 +128,13 @@ npm run format
 - `npm run format` - Format code with Prettier
 - `npm run type-check` - Run TypeScript type checking
 
-## 🤝 Contributing
-
-Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
-
-### Development Workflow
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Make your changes
-4. Add tests for your changes
-5. Ensure all tests pass (`npm test`)
-6. Commit your changes (`git commit -m 'feat: add amazing feature'`)
-7. Push to the branch (`git push origin feature/amazing-feature`)
-8. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
-- Inspired by financial libraries from Stripe, PayStack, Moniepoint, and other payment processors
+- Inspired by financial libraries from Stripe, PayStack, Monnify, and other payment processors
 - Built with modern TypeScript and development tools
 - Thanks to all contributors and the open-source community
 
-## 📞 Support
-
-- 📧 Email: [your-email@example.com](mailto:your-email@example.com)
-- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/monie-utils/issues)
-- 💬 Discussions: [GitHub Discussions](https://github.com/yourusername/monie-utils/discussions)
-
 ---
 
-Made with ❤️ by [Your Name](https://github.com/yourusername)
+Made with ❤️ by Oluwaferanmi (https://github.com/spiderocious)
