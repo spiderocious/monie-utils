@@ -42,6 +42,12 @@ export * from './conversion';
 // Export arithmetic utilities
 export * from './arithmetic';
 
+// Export loan and credit utilities
+export * from './loans';
+
+// Export investment and returns utilities
+export * from './investment';
+
 // Version information
 export const VERSION = '0.1.0';
 
