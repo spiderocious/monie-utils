@@ -1,6 +1,6 @@
 {
   "name": "monie-utils",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A comprehensive TypeScript library for money-related utilities including currency formatting, conversion, validation, and financial calculations",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
