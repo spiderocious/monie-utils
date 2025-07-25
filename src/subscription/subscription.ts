@@ -115,13 +115,18 @@ export function compareSubscriptionPlans(
     const featureBonus = Math.min(20, featureCount * 2); // Up to 20 points for features
     const valueScore = Math.min(100, baseScore + featureBonus);
 
-    return {
+    const analysis: PlanAnalysis = {
       plan,
       effectiveMonthlyRate: roundMoney(effectiveMonthlyRate, 2),
       annualCost: roundMoney(annualCost, 2),
-      costPerUser: costPerUser ? roundMoney(costPerUser, 2) : undefined,
       valueScore: roundMoney(valueScore, 1),
     };
+
+    if (costPerUser !== undefined) {
+      analysis.costPerUser = roundMoney(costPerUser, 2);
+    }
+
+    return analysis;
   });
 
   // Find recommended plan (highest value score)

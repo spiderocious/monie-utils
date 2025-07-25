@@ -48,6 +48,12 @@ export * from './loans';
 // Export investment and returns utilities
 export * from './investment';
 
+// Export subscription and recurring payment utilities
+export * from './subscription';
+
+// Export utility functions
+export * from './utils';
+
 // Version information
 export const VERSION = '0.1.0';
 
