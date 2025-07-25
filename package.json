@@ -42,12 +42,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/monie-utils.git"
+    "url": "git+https://github.com/spiderocious/monie-utils.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/monie-utils/issues"
+    "url": "https://github.com/spiderocious/monie-utils/issues"
   },
-  "homepage": "https://github.com/yourusername/monie-utils#readme",
+  "homepage": "https://github.com/spiderocious/monie-utils#readme",
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
